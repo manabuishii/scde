@@ -511,7 +511,14 @@ get.scde.server <- function(port,ip) {
         server <- get("___scde.server", envir = globalenv())
     } else {
         require(Rook)
+        #server <- Rhttpd$new()
+        status <- .Call(tools:::C_startHTTPD, ip, port)
+        unlockBinding("httpdPort", environment(tools:::startDynamicHelp))
+        assign("httpdPort", port, environment(tools:::startDynamicHelp))
+
         server <- Rhttpd$new()
+        server$listenAddr <- ip
+        server$listenPort <- port
         assign("___scde.server", server, envir = globalenv())
         if(!missing(ip)) {
           if(missing(port)) {
