@@ -513,7 +513,7 @@ get.scde.server <- function(port,ip) {
         require(Rook)
         #server <- Rhttpd$new()
         status <- .Call(tools:::C_startHTTPD, ip, port)
-        unlockBinding("httpdPort", environment(tools:::startDynamicHelp))
+        #unlockBinding("httpdPort", environment(tools:::startDynamicHelp))
         assign("httpdPort", port, environment(tools:::startDynamicHelp))
 
         server <- Rhttpd$new()
