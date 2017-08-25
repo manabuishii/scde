@@ -528,20 +528,20 @@ get.scde.server <- function(port,ip) {
         server$listenPort <- port
 	cat("Before assign\n")
 	assign("___scde.server", server, envir = globalenv())
-        cat("Before start\n")
-	if(!missing(ip)) {
-          if(missing(port)) {
-            server$start(listen = ip)
-          } else {
-            server$start(listen = ip, port = port)
-          }
-        } else {
-          if(missing(port)) {
-            server$start()
-          } else {
-            server$start(port=port)
-          }
-        }
+        cat("Skip start\n")
+	#if(!missing(ip)) {
+        #  if(missing(port)) {
+        #    server$start(listen = ip)
+        #  } else {
+        #    server$start(listen = ip, port = port)
+        #  }
+        #} else {
+        #  if(missing(port)) {
+        #    server$start()
+        #  } else {
+        #    server$start(port=port)
+        #  }
+        #}
 	cat("Before print\n")
 	server$print()
         
