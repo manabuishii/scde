@@ -526,14 +526,14 @@ get.scde.server <- function(port,ip) {
 	server <- Rhttpd$new()
         server$listenAddr <- ip
         server$listenPort <- port
-	cat("Before print\n")
-	server$print()
-        assign("___scde.server", server, envir = globalenv())
-        if(!missing(ip)) {
+	cat("Before assign\n")
+	assign("___scde.server", server, envir = globalenv())
+        cat("Before start\n")
+	if(!missing(ip)) {
           if(missing(port)) {
             server$start(listen = ip)
           } else {
-            server$start(listen = ip, port = port, quiet = TRUE)
+            server$start(listen = ip, port = port)
           }
         } else {
           if(missing(port)) {
@@ -542,6 +542,9 @@ get.scde.server <- function(port,ip) {
             server$start(port=port)
           }
         }
+	cat("Before print\n")
+	server$print()
+        
     }
     return(server)
 }
