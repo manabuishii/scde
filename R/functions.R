@@ -521,6 +521,7 @@ get.scde.server <- function(port,ip) {
         unlockBinding("httpdPort", environment(tools:::startDynamicHelp))
         assign("httpdPort", myHttpdPort, environment(tools:::startDynamicHelp))
 
+	cat("status=",status,"\n")
         cat("Before new\n")
 	server <- Rhttpd$new()
         server$listenAddr <- ip
@@ -532,7 +533,7 @@ get.scde.server <- function(port,ip) {
           if(missing(port)) {
             server$start(listen = ip)
           } else {
-            server$start(listen = ip, port = port)
+            server$start(listen = ip, port = port, quiet = TRUE)
           }
         } else {
           if(missing(port)) {
