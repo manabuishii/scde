@@ -521,9 +521,11 @@ get.scde.server <- function(port,ip) {
         unlockBinding("httpdPort", environment(tools:::startDynamicHelp))
         assign("httpdPort", myHttpdPort, environment(tools:::startDynamicHelp))
 
-        server <- Rhttpd$new()
+        cat("Before new\n")
+	server <- Rhttpd$new()
         server$listenAddr <- ip
         server$listenPort <- port
+	cat("Before print\n")
 	server$print()
         assign("___scde.server", server, envir = globalenv())
         if(!missing(ip)) {
